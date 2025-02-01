@@ -1,0 +1,7 @@
+[environments."local/task_management"]
+url = "jdbc:postgresql://localhost:5432/task_management"
+user = "flyway_user"
+password = "password"
+
+[flyway]
+locations = ["filesystem:./sql"]

@@ -5,6 +5,8 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.thymeleaf.*
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
+import shhashi.practice.i20250126.presentation.auth.configureFormAuthentication
+import shhashi.practice.i20250126.presentation.routes.configureRouting
 
 fun main(args: Array<String>) {
     embeddedServer(
@@ -15,6 +17,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    // Thymelead
     val templateResolver = ClassLoaderTemplateResolver().apply {
         prefix = "/template/"
         suffix = ".html"
@@ -24,4 +27,10 @@ fun Application.module() {
     install(Thymeleaf) {
         setTemplateResolver(templateResolver)
     }
+
+    // Authentication
+    configureFormAuthentication()
+
+    // Routing
+    configureRouting()
 }

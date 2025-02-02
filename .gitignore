@@ -28,3 +28,6 @@ build
 
 # Vite build ouput
 **/resources/static/app/
+
+# kotlin
+.kotlin/

@@ -25,3 +25,6 @@ build
 
 # IDE
 .idea
+
+# Vite build ouput
+**/resources/static/app/

@@ -1,25 +1,38 @@
+-- 登録コード
+-- * RestoreFromTempTable
+create table registration_codes
+(
+    registration_code_id serial not null,
+    registration_code    varchar(100),
+    create_account_ulid  varchar(26),
+    account_ulid         varchar(26),
+    expired_in           timestamp with time zone,
+    created_at           timestamp with time zone,
+    constraint registration_codes_PKC primary key (registration_code_id)
+);
+
 -- 工数
 -- * RestoreFromTempTable
 create table person_hours
 (
-    person_hour_id bigint not null,
+    person_hour_id bigserial not null,
     account_ulid   varchar(26),
     task_id        varchar(100),
     person_hour    integer,
-    working_day    date,
-    created_at     date,
+    working_day    timestamp with time zone,
+    created_at     timestamp with time zone,
     constraint person_hours_PKC primary key (person_hour_id)
 );
 
--- status
+-- ステータス
 -- * RestoreFromTempTable
-create table "ステータス"
+create table status
 (
-    status_id   integer not null,
+    status_id   serial not null,
     status_name varchar(100),
-    created_at  date,
-    deleted_at  date,
-    constraint "ステータス_PKC" primary key (status_id)
+    created_at  timestamp with time zone,
+    deleted_at  timestamp with time zone,
+    constraint status_PKC primary key (status_id)
 );
 
 -- タスク
@@ -29,12 +42,12 @@ create table tasks
     task_id      varchar(100) not null,
     task_name    varchar(100),
     description  text,
-    finish_date  date,
+    finish_date  timestamp with time zone,
     account_ulid varchar(26),
     project_id   varchar(100),
     status_id    integer,
-    created_at   date,
-    deleted_at   date,
+    created_at   timestamp with time zone,
+    deleted_at   timestamp with time zone,
     constraint tasks_PKC primary key (task_id)
 );
 
@@ -42,11 +55,11 @@ create table tasks
 -- * RestoreFromTempTable
 create table roles
 (
-    role_id    integer      not null,
+    role_id    varchar(100) not null,
     role_name  varchar(100) not null,
-    created_at date,
-    updated_at date,
-    deleted_at date,
+    created_at timestamp with time zone,
+    updated_at timestamp with time zone,
+    deleted_at timestamp with time zone,
     constraint roles_PKC primary key (role_id)
 );
 
@@ -54,12 +67,12 @@ create table roles
 -- * RestoreFromTempTable
 create table account_roles
 (
-    account_role_id integer      not null,
+    account_role_id serial       not null,
     account_ulid    varchar(26)  not null,
     project_id      varchar(100) not null,
     role_id         integer      not null,
-    created_at      date,
-    deleted_at      date,
+    created_at      timestamp with time zone,
+    deleted_at      timestamp with time zone,
     constraint account_roles_PKC primary key (account_role_id)
 );
 
@@ -69,8 +82,8 @@ create table projects
 (
     project_id   varchar(100) not null,
     project_name varchar(100) not null,
-    created_at   date,
-    deleted_at   date,
+    created_at   timestamp with time zone,
+    deleted_at   timestamp with time zone,
     constraint projects_PKC primary key (project_id)
 );
 
@@ -81,7 +94,7 @@ create table accounts
     account_ulid varchar(26)  not null,
     account_name varchar(20)  not null,
     password     varchar(100) not null,
-    created_at   date,
-    deleted_at   date,
+    created_at   timestamp with time zone,
+    deleted_at   timestamp with time zone,
     constraint accounts_PKC primary key (account_ulid)
 );

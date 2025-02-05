@@ -10,9 +10,10 @@ import io.ktor.server.thymeleaf.*
 fun Application.configureRouting() {
     routing {
         staticResources("/static", "static")
+        staticResources("/assets", "static/assets")
 
         get("/login") {
-            call.respond(ThymeleafContent("login/index", emptyMap()))
+            call.respond(ThymeleafContent("built/login/index", emptyMap()))
         }
         authenticate("auth-login") {
             post("/login") {

@@ -8,11 +8,15 @@ fun Application.configureFormAuthentication() {
         form("auth-login") {
             userParamName = "accountId"
             passwordParamName = "password"
+            // ログイン認証
             validate { credentials ->
                 if (credentials.name == "user" && credentials.password == "pass") {
                     UserIdPrincipal(credentials.name)
                 } else null
             }
+
+            // JWT 発行
+            
         }
     }
 }

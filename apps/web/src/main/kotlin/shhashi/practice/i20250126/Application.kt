@@ -1,22 +1,26 @@
 package shhashi.practice.i20250126
 
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 import io.ktor.server.thymeleaf.*
+import org.koin.ksp.generated.module
+import org.koin.ktor.plugin.Koin
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
-import shhashi.practice.i20250126.presentation.auth.configureFormAuthentication
-import shhashi.practice.i20250126.presentation.routes.configureRouting
+import shhashi.practice.i20250126.presentation.di.KoinAnnotationModule
+import shhashi.practice.i20250126.presentation.di.jwtConfig
+import shhashi.practice.i20250126.presentation.plugin.auth.formAuthentication
+import shhashi.practice.i20250126.presentation.routes.login.loginRoutes
+import shhashi.practice.i20250126.presentation.routes.staticRouting
 
 fun main(args: Array<String>) {
-    embeddedServer(
-        Netty,
-        port = 8080,
-        module = Application::module
-    ).start(wait = true)
+    io.ktor.server.netty.EngineMain.main(args)
 }
 
 fun Application.module() {
+    // Koin
+    install(Koin) {
+        modules(KoinAnnotationModule().module, jwtConfig())
+    }
+
     // Thymelead
     val templateResolver = ClassLoaderTemplateResolver().apply {
         prefix = "/template/"
@@ -29,8 +33,9 @@ fun Application.module() {
     }
 
     // Authentication
-    configureFormAuthentication()
+    formAuthentication()
 
     // Routing
-    configureRouting()
+    staticRouting()
+    loginRoutes()
 }

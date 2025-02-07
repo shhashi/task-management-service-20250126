@@ -4,3 +4,5 @@ ktor:
       - shhashi.practice.i20250126.ApplicationKt.module
   deployment:
     port: 8080
+jwt:
+  secret: "ThisIsSecret"

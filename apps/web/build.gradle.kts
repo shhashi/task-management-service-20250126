@@ -38,7 +38,7 @@ dependencies {
 
     implementation("io.ktor:ktor-server-core-jvm:${ext.properties["ktorVersion"]}")
     implementation("io.ktor:ktor-server-netty-jvm:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-config-yaml-jvm:${ext.properties["ktorVersion"]}")
+    implementation("io.ktor:ktor-server-config-yaml:${ext.properties["ktorVersion"]}")
     implementation("io.ktor:ktor-server-auth:${ext.properties["ktorVersion"]}")
     implementation("io.ktor:ktor-server-auth-jwt:${ext.properties["ktorVersion"]}")
     implementation("io.ktor:ktor-server-test-host-jvm:${ext.properties["ktorVersion"]}")

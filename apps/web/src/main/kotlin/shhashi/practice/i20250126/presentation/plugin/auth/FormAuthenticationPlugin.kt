@@ -1,9 +1,9 @@
-package shhashi.practice.i20250126.presentation.auth
+package shhashi.practice.i20250126.presentation.plugin.auth
 
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 
-fun Application.configureFormAuthentication() {
+fun Application.formAuthentication() {
     install(Authentication) {
         form("auth-login") {
             userParamName = "accountId"
@@ -14,9 +14,6 @@ fun Application.configureFormAuthentication() {
                     UserIdPrincipal(credentials.name)
                 } else null
             }
-
-            // JWT 発行
-            
         }
     }
 }

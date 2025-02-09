@@ -10,6 +10,18 @@ import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 
 import path from 'path';
+import { globSync } from 'node:fs';
+
+// ビルド対象となる HTML ファイルの対応表
+const entryPoints: Record<string, string> = {};
+const files = globSync('./src/templates/**/*.html');
+files.forEach((file: string) => {
+  console.log(file.split('/').pop()!.replace('.html', ''));
+  const paths = file.split('/');
+  const fileName = paths.pop()!.replace('.html', '');
+  const pageName = paths.pop()!;
+  entryPoints[fileName + '/' + pageName] = path.resolve(__dirname, file);
+});
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -66,9 +78,7 @@ export default defineConfig({
     outDir: path.resolve(__dirname, '../web/src/main/resources/static'),
     emptyOutDir: false,
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'src/templates/login/index.html')
-      },
+      input: entryPoints
     }
   }
 });

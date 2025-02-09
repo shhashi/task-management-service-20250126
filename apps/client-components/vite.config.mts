@@ -14,7 +14,7 @@ import { globSync } from 'node:fs';
 
 // ビルド対象となる HTML ファイルの対応表
 const entryPoints: Record<string, string> = {};
-const files = globSync('./src/templates/**/*.html');
+const files = globSync('./src/pages/**/*.html');
 files.forEach((file: string) => {
   console.log(file.split('/').pop()!.replace('.html', ''));
   const paths = file.split('/');

@@ -1,5 +1,6 @@
 package shhashi.practice.i20250126.presentation.routes.login
 
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.response.*
@@ -34,7 +35,7 @@ fun Application.loginRoutes() {
                         "SameSite" to "Lax"
                     )
                 )
-                call.respondRedirect("/")
+                call.respond(HttpStatusCode.OK)
             }
         }
     }

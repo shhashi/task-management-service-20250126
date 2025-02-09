@@ -10,6 +10,7 @@ import shhashi.practice.i20250126.presentation.di.jwtConfig
 import shhashi.practice.i20250126.presentation.plugin.auth.formAuthentication
 import shhashi.practice.i20250126.presentation.routes.login.loginRoutes
 import shhashi.practice.i20250126.presentation.routes.staticRouting
+import shhashi.practice.i20250126.presentation.routes.top.topRoutes
 
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
@@ -38,4 +39,5 @@ fun Application.module() {
     // Routing
     staticRouting()
     loginRoutes()
+    topRoutes()
 }

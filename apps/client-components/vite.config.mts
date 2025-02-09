@@ -25,10 +25,9 @@ files.forEach((file: string) => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  root: 'src/',
-  publicDir: path.resolve(__dirname, 'public'),
+  // root: 'src/',
+  // publicDir: path.resolve(__dirname, 'public'),
   plugins: [
-    VueRouter(),
     Vue({
       template: { transformAssetUrls }
     }),

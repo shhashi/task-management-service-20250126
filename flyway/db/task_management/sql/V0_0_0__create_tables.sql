@@ -3,7 +3,7 @@
 create table registration_codes
 (
     registration_code_id serial not null,
-    registration_code    varchar(100),
+    registration_code    varchar(32),
     create_account_ulid  varchar(26),
     account_ulid         varchar(26),
     expired_in           timestamp with time zone,

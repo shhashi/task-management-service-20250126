@@ -382,11 +382,11 @@ LName=登録コード
 Comment=
 TableInnerOption=
 TableOption=
-Page=Main
+Page=MAIN
 Left=400
 Top=2600
 Field="登録コードID","registration_code_id","serial","NOT NULL",0,"","",$FFFFFFFF,""
-Field="登録コード","registration_code","varchar(100)",,,"","",$FFFFFFFF,""
+Field="登録コード","registration_code","varchar(32)",,,"","",$FFFFFFFF,""
 Field="発行者","create_account_ulid","varchar(26)",,,"","",$FFFFFFFF,""
 Field="登録済みアカウント","account_ulid","varchar(26)",,,"","",$FFFFFFFF,""
 Field="コード有効期限","expired_in","timestamp with time zone",,,"","",$FFFFFFFF,""
@@ -394,8 +394,8 @@ Field="作成日","created_at","timestamp with time zone",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20250202145501
-Position="Main",400,2600,1328,361
+ModifiedDateTime=20250211150548
+Position="MAIN",400,2600,1328,361
 ZOrder=17
 
 [Relation]

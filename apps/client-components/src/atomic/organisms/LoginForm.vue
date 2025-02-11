@@ -1,11 +1,16 @@
 <template>
+  <p class="text-h3">ログイン</p>
   <form action="/login" method="POST" @submit.prevent="submit">
     <v-row>
       <v-col cols="4">
         <div class="text-h5">ログインID</div>
       </v-col>
       <v-col cols="8">
-        <v-text-field v-model="loginId" density="comfortable" />
+        <v-text-field
+          v-model="loginId"
+          density="comfortable"
+          variant="outlined"
+        />
       </v-col>
     </v-row>
 
@@ -18,6 +23,7 @@
           v-model="password"
           type="password"
           density="comfortable"
+          variant="outlined"
         />
       </v-col>
       <v-btn
@@ -68,7 +74,7 @@ async function submit() {
     window.location.href = "/";
   }
 
-  if (400 <= response.status && response.status < 500) {
+  if (400 <= response.status && response.status < 600) {
     alert("ログインに失敗しました。");
     isSubmitted.value = false;
   }

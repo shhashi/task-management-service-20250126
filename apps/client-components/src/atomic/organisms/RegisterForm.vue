@@ -52,8 +52,6 @@
     >
       登録する
     </v-btn>
-    <p>{{ props.registerCode }}</p>
-    <p>{{ checkSamePassword }}</p>
   </form>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <p class="text-h3">ログイン</p>
-  <form action="/login" method="POST" @submit.prevent="submit">
+  <form @submit.prevent="submit">
     <v-row>
       <v-col cols="4">
         <div class="text-h5">ログインID</div>

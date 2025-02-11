@@ -7,11 +7,6 @@ plugins {
 group = "shhashi.practice.i20250126"
 version = "0.0.1-SNAPSHOT"
 
-ext {
-    set("kotlinVersion", "2.1.0")
-    set("ktorVersion", "3.0.2")
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -36,16 +31,20 @@ dependencies {
     implementation(kotlin("reflect"))
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
-    implementation("io.ktor:ktor-server-core-jvm:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-netty-jvm:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-config-yaml:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-auth:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-auth-jwt:${ext.properties["ktorVersion"]}")
-    implementation("io.ktor:ktor-server-test-host-jvm:${ext.properties["ktorVersion"]}")
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("io.ktor:ktor-server-config-yaml")
+    implementation("io.ktor:ktor-server-auth")
+    implementation("io.ktor:ktor-server-auth-jwt")
+    implementation("io.ktor:ktor-server-test-host-jvm")
     implementation("ch.qos.logback:logback-classic:1.5.15")
 
-    implementation("io.ktor:ktor-server-thymeleaf:${ext.properties["ktorVersion"]}")
+    implementation("org.jetbrains.exposed:exposed-core:0.59.0")
+
+    implementation("io.ktor:ktor-server-thymeleaf")
     implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
+
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
 }
 
 sourceSets.main {

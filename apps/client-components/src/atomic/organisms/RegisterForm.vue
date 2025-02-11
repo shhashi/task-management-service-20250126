@@ -111,6 +111,7 @@ async function submit() {
     new URLSearchParams({
       accountId: loginId.value!,
       password: password.value!,
+      passwordConfirmation: passwordConfirmation.value!
     }),
     {
       headers: {

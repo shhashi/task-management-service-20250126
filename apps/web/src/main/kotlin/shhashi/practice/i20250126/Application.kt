@@ -7,7 +7,8 @@ import org.koin.ktor.plugin.Koin
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import shhashi.practice.i20250126.presentation.di.KoinAnnotationModule
 import shhashi.practice.i20250126.presentation.di.jwtConfig
-import shhashi.practice.i20250126.presentation.plugin.auth.formAuthentication
+import shhashi.practice.i20250126.presentation.plugin.authentication
+import shhashi.practice.i20250126.presentation.routes.account.register.registerRoutes
 import shhashi.practice.i20250126.presentation.routes.login.loginRoutes
 import shhashi.practice.i20250126.presentation.routes.staticRouting
 import shhashi.practice.i20250126.presentation.routes.top.topRoutes
@@ -34,10 +35,11 @@ fun Application.module() {
     }
 
     // Authentication
-    formAuthentication()
+    authentication()
 
     // Routing
     staticRouting()
     loginRoutes()
     topRoutes()
+    registerRoutes()
 }

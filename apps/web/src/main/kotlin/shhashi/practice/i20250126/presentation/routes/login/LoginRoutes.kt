@@ -14,6 +14,7 @@ fun Application.loginRoutes() {
 
     routing {
         get("/login") {
+            // TODO すでにトークンを保持している場合は警告画面に遷移させるようにする。
             call.respond(ThymeleafContent("built/login/index", emptyMap()))
         }
 
@@ -33,7 +34,8 @@ fun Application.loginRoutes() {
                     secure = false,
                     extensions = mapOf(
                         "SameSite" to "Lax"
-                    )
+                    ),
+                    path = "/"
                 )
                 call.respond(HttpStatusCode.OK)
             }

@@ -16,7 +16,7 @@ class JwtAuthentication(private val jwtConfiguration: JwtConfiguration) {
 
         return JWT.create()
             .withClaim("accountId", account.name)
-            .withExpiresAt(Date(System.currentTimeMillis() + 60000))
+            .withExpiresAt(Date(System.currentTimeMillis() + 360_000_000)) // TODO 有効期間はアプリの設定ファイルから設定できるようにしたい
             .sign(Algorithm.HMAC256(jwtConfiguration.secret))
     }
 }

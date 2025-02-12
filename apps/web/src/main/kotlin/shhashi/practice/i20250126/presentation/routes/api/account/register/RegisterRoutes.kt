@@ -17,33 +17,39 @@ fun Application.registerApiRoutes() {
     routing {
         post("/api/account/register/{registerCode}") {
             val receive = call.receiveParameters()
-            // アカウント登録
             if (
                 !receive["accountId"].isNullOrBlank()
                 && !receive["password"].isNullOrBlank()
                 && !receive["password"].isNullOrBlank()
                 && !receive["password"].isNullOrBlank()
             ) {
+                // アカウント登録
                 accountRegistration.register(
                     accountId = receive["accountId"]!!,
                     password = receive["password"]!!,
                     passwordConfirmation = receive["passwordConfirmation"]!!,
                     accountName = receive["accountName"]!!
                 )
+
+                // JWT 発行
+                val jwt = jwtAuthentication.createJwt(UserIdPrincipal(name = "test"))
+
+                // JWT を cookie に設定
+                call.response.cookies.append(
+                    "task-management-session",
+                    jwt,
+                    maxAge = 100000,
+                    httpOnly = true,
+                    secure = false,
+                    extensions = mapOf(
+                        "SameSite" to "Lax"
+                    ),
+                    path = "/"
+                )
+                call.respond(HttpStatusCode.OK)
             } else {
                 call.respond(HttpStatusCode.BadRequest)
             }
-
-            // JWT 発行
-            val jwt = jwtAuthentication.createJwt(UserIdPrincipal(name = "test"))
-
-            // JWT を cookie に設定
-            call.response.cookies.append(
-                "task-management-session", jwt, maxAge = 100000, httpOnly = true, secure = false, extensions = mapOf(
-                    "SameSite" to "Lax"
-                ), path = "/"
-            )
-            call.respond(HttpStatusCode.OK)
         }
     }
 }

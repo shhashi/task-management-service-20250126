@@ -24,7 +24,8 @@ class RegistrationCodesRepository {
                 }
                 .andWhere {
                     RegistrationCodes.accountId.isNull()
-                }.map { it[RegistrationCodes.registrationCode]
+                }.map {
+                    it[RegistrationCodes.registrationCode]
                     RegistrationCode(
                         registrationCodeId = it[RegistrationCodes.registrationCodeId],
                         registrationCode = it[RegistrationCodes.registrationCode],

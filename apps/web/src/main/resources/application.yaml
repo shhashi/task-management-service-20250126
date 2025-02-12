@@ -2,6 +2,7 @@ ktor:
   application:
     modules:
       - shhashi.practice.i20250126.ApplicationKt.module
+  development: true
   deployment:
     port: 8080
     watch:
@@ -9,3 +10,5 @@ ktor:
       - resources
 jwt:
   secret: "ThisIsSecret"
+hash:
+  secret: "ThisIsHashKey"

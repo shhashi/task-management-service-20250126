@@ -9,10 +9,12 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.get
 import shhashi.practice.i20250126.core.auth.JwtAuthentication
 import shhashi.practice.i20250126.core.register.AccountRegistration
+import shhashi.practice.i20250126.core.register.RegisterCodeCompletion
 
 fun Application.registerApiRoutes() {
     val jwtAuthentication: JwtAuthentication = get()
     val accountRegistration: AccountRegistration = get()
+    val registerCodeCompletion: RegisterCodeCompletion = get()
 
     routing {
         post("/api/account/register/{registerCode}") {
@@ -24,15 +26,21 @@ fun Application.registerApiRoutes() {
                 && !receive["password"].isNullOrBlank()
             ) {
                 // アカウント登録
-                accountRegistration.register(
+                val accountId = accountRegistration.register(
                     accountId = receive["accountId"]!!,
                     password = receive["password"]!!,
                     passwordConfirmation = receive["passwordConfirmation"]!!,
                     accountName = receive["accountName"]!!
                 )
 
+                // 登録コードを登録済みに変更
+                registerCodeCompletion.complete(
+                    registrationCode = call.parameters["registerCode"]!!,
+                    accountId = accountId
+                )
+
                 // JWT 発行
-                val jwt = jwtAuthentication.createJwt(UserIdPrincipal(name = "test"))
+                val jwt = jwtAuthentication.createJwt(UserIdPrincipal(name = accountId.toString()))
 
                 // JWT を cookie に設定
                 call.response.cookies.append(

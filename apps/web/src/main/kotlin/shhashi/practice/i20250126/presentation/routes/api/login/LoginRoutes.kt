@@ -17,6 +17,7 @@ fun Application.loginApiRoutes() {
                 val principal = call.principal<UserIdPrincipal>()
 
                 // JWT 発行
+                // TODO account_id で  JWT トークンを作成するように実装する。
                 val jwt = jwtAuthentication.createJwt(principal)
 
                 // JWT を cookie に設定

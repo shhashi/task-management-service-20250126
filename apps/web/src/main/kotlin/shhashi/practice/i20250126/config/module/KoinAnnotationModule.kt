@@ -1,4 +1,4 @@
-package shhashi.practice.i20250126.presentation.di
+package shhashi.practice.i20250126.config.module
 
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module

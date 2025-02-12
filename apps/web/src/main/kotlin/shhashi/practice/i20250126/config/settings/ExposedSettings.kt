@@ -1,4 +1,4 @@
-package shhashi.practice.i20250126.config
+package shhashi.practice.i20250126.config.settings
 
 import org.jetbrains.exposed.sql.Database
 

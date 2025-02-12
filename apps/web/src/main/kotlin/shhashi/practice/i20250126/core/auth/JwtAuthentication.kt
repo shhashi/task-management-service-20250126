@@ -4,11 +4,11 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.server.auth.*
 import org.koin.core.annotation.Single
-import shhashi.practice.i20250126.presentation.di.config.JwtConfiguration
+import shhashi.practice.i20250126.config.settings.JwtSettings
 import java.util.*
 
 @Single
-class JwtAuthentication(private val jwtConfiguration: JwtConfiguration) {
+class JwtAuthentication(private val jwtSettings: JwtSettings) {
     fun createJwt(account: UserIdPrincipal?): String {
         if (account == null) {
             throw IllegalStateException("`account` is null")
@@ -17,6 +17,6 @@ class JwtAuthentication(private val jwtConfiguration: JwtConfiguration) {
         return JWT.create()
             .withClaim("accountId", account.name)
             .withExpiresAt(Date(System.currentTimeMillis() + 360_000_000)) // TODO 有効期間はアプリの設定ファイルから設定できるようにしたい
-            .sign(Algorithm.HMAC256(jwtConfiguration.secret))
+            .sign(Algorithm.HMAC256(jwtSettings.secret))
     }
 }

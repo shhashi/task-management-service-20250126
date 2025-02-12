@@ -49,6 +49,7 @@ Page=MAIN
 Left=200
 Top=200
 Field="アカウントID","account_id","serial","NOT NULL",0,"","",$FFFFFFFF,""
+Field="ログインID","login_id","varchar(100)","NOT NULL",,"","",$FFFFFFFF,""
 Field="アカウント名","account_name","varchar(20)","NOT NULL",,"","",$FFFFFFFF,""
 Field="パスワード","password","varchar(100)","NOT NULL",,"","",$FFFFFFFF,""
 Field="作成日","created_at","timestamp with time zone",,,"","",$FFFFFFFF,""
@@ -56,7 +57,7 @@ Field="削除日","deleted_at","timestamp with time zone",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20250212225346
+ModifiedDateTime=20250213003123
 Position="MAIN",200,200,1082,281
 ZOrder=1
 

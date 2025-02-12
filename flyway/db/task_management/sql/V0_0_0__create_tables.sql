@@ -92,6 +92,7 @@ create table projects
 create table accounts
 (
     account_id   serial       not null,
+    login_id     varchar(100) not null,
     account_name varchar(20)  not null,
     password     varchar(100) not null,
     created_at   timestamp with time zone,

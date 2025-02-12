@@ -67,13 +67,11 @@ type ThymeleafProps = {
 let props: ThymeleafProps;
 try {
   const thymeleafProps = document.getElementById("app")?.dataset?.props; // TODO Thymeleaf からの値の受け渡しがこれで本当にいいのか精査が必要
-  console.log(thymeleafProps);
   if (!thymeleafProps) {
     throw new Error();
   }
 
   props = JSON.parse(thymeleafProps) as ThymeleafProps; // TODO 型ガードがほしい
-  console.log(props);
 } catch (error) {
   alert(
     "情報を取得できませんでした。お手数おかけしますが、時間をおいて再度お試しいただけますと幸いです。",

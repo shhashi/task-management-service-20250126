@@ -40,6 +40,9 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.5.15")
 
     implementation("org.jetbrains.exposed:exposed-core:0.59.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.59.0")
+    implementation("org.jetbrains.exposed:exposed-kotlin-datetime:0.59.0")
+    implementation("org.postgresql:postgresql:42.7.2")
 
     implementation("io.ktor:ktor-server-thymeleaf")
     implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")

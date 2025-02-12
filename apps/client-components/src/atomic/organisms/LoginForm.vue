@@ -57,7 +57,7 @@ async function submit() {
   isSubmitted.value = true;
 
   const response = await axios.post(
-    url + "/login",
+    url + "/api/login",
     new URLSearchParams({
       accountId: loginId.value,
       password: password.value,

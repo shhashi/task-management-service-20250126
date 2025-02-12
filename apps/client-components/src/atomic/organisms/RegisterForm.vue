@@ -105,7 +105,7 @@ async function submit() {
   isSubmitted.value = true;
 
   const response = await axios.post(
-    url + `/account/register/${props.registerCode}`,
+    url + `/api/account/register/${props.registerCode}`,
     new URLSearchParams({
       accountId: loginId.value!,
       password: password.value!,

@@ -5,9 +5,10 @@ import io.ktor.server.thymeleaf.*
 import org.koin.ksp.generated.module
 import org.koin.ktor.plugin.Koin
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
-import shhashi.practice.i20250126.config.ExposedSettings
-import shhashi.practice.i20250126.presentation.di.KoinAnnotationModule
-import shhashi.practice.i20250126.presentation.di.jwtConfig
+import shhashi.practice.i20250126.config.module.KoinAnnotationModule
+import shhashi.practice.i20250126.config.module.jwtSetting
+import shhashi.practice.i20250126.config.module.passwordHashSetting
+import shhashi.practice.i20250126.config.settings.ExposedSettings
 import shhashi.practice.i20250126.presentation.plugin.authentication
 import shhashi.practice.i20250126.presentation.routes.api.apiRoutes
 import shhashi.practice.i20250126.presentation.routes.staticRouting
@@ -20,7 +21,7 @@ fun main(args: Array<String>) {
 fun Application.module() {
     // Koin
     install(Koin) {
-        modules(KoinAnnotationModule().module, jwtConfig())
+        modules(KoinAnnotationModule().module, jwtSetting(), passwordHashSetting())
     }
 
     // Exposed

@@ -1,19 +1,14 @@
-package shhashi.practice.i20250126.presentation.routes.account.register
+package shhashi.practice.i20250126.presentation.routes.web.account.register
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.thymeleaf.*
 import org.koin.ktor.ext.get
-import shhashi.practice.i20250126.core.auth.JwtAuthentication
 import shhashi.practice.i20250126.core.register.RegisterCodeValidation
 
-fun Application.registerRoutes() {
-    val jwtAuthentication: JwtAuthentication = get()
+fun Application.registerWebRoutes() {
     val registerCodeValidation: RegisterCodeValidation = get()
 
     routing {
@@ -32,34 +27,10 @@ fun Application.registerRoutes() {
                 call.respond(
                     ThymeleafContent(
                         "built/error/index",
-                        emptyMap()
+                        mapOf("props" to mapper.writeValueAsString(mapOf("errorMessage" to "この URL では登録できません。管理者に確認してください。")))
                     )
                 )
             }
-        }
-
-        post("/account/register/{registerCode}") {
-            val receive = call.receiveParameters()
-            println(receive["accountId"])
-            println(receive["password"])
-            println(receive["passwordConfirmation"])
-
-            // JWT 発行
-            val jwt = jwtAuthentication.createJwt(UserIdPrincipal(name = "test"))
-
-            // JWT を cookie に設定
-            call.response.cookies.append(
-                "task-management-session",
-                jwt,
-                maxAge = 100000,
-                httpOnly = true,
-                secure = false,
-                extensions = mapOf(
-                    "SameSite" to "Lax"
-                ),
-                path = "/"
-            )
-            call.respond(HttpStatusCode.OK)
         }
     }
 }

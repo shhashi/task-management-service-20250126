@@ -5,13 +5,13 @@ import io.ktor.server.thymeleaf.*
 import org.koin.ksp.generated.module
 import org.koin.ktor.plugin.Koin
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
+import shhashi.practice.i20250126.config.ExposedSettings
 import shhashi.practice.i20250126.presentation.di.KoinAnnotationModule
 import shhashi.practice.i20250126.presentation.di.jwtConfig
 import shhashi.practice.i20250126.presentation.plugin.authentication
-import shhashi.practice.i20250126.presentation.routes.account.register.registerRoutes
-import shhashi.practice.i20250126.presentation.routes.login.loginRoutes
+import shhashi.practice.i20250126.presentation.routes.api.apiRoutes
 import shhashi.practice.i20250126.presentation.routes.staticRouting
-import shhashi.practice.i20250126.presentation.routes.top.topRoutes
+import shhashi.practice.i20250126.presentation.routes.web.webRoutes
 
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
@@ -22,6 +22,9 @@ fun Application.module() {
     install(Koin) {
         modules(KoinAnnotationModule().module, jwtConfig())
     }
+
+    // Exposed
+    ExposedSettings.initDb()
 
     // Thymelead
     val templateResolver = ClassLoaderTemplateResolver().apply {
@@ -39,7 +42,6 @@ fun Application.module() {
 
     // Routing
     staticRouting()
-    loginRoutes()
-    topRoutes()
-    registerRoutes()
+    webRoutes()
+    apiRoutes()
 }

@@ -7,13 +7,13 @@ import io.ktor.http.auth.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
-import shhashi.practice.i20250126.presentation.di.config.JwtConfiguration
+import shhashi.practice.i20250126.config.settings.JwtSettings
 
-fun AuthenticationConfig.jwtAuthentication(jwtConfiguration: JwtConfiguration) {
+fun AuthenticationConfig.jwtAuthentication(jwtSettings: JwtSettings) {
     jwt("auth-jwt") {
         // JWT 検証器
         verifier(
-            JWT.require(Algorithm.HMAC256(jwtConfiguration.secret))
+            JWT.require(Algorithm.HMAC256(jwtSettings.secret))
                 .build()
         )
 

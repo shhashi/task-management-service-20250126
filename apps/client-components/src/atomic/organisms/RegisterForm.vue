@@ -14,6 +14,19 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col cols="4">
+        <div class="text-h5">アカウント名</div>
+      </v-col>
+      <v-col cols="8">
+        <v-text-field
+          v-model="accountName"
+          density="comfortable"
+          variant="outlined"
+        />
+      </v-col>
+    </v-row>
+
     <v-row justify="center">
       <v-col cols="4">
         <div class="text-h5">パスワード</div>
@@ -80,12 +93,18 @@ try {
 }
 
 const loginId = ref<string>();
+const accountName = ref<string>();
 const password = ref<string>();
 const passwordConfirmation = ref<string>();
 const isSubmitted = ref<boolean>(false);
 
 const isInput = computed(() => {
-  return loginId.value && password.value && passwordConfirmation.value;
+  return (
+    loginId.value &&
+    accountName.value &&
+    password.value &&
+    passwordConfirmation.value
+  );
 });
 
 const checkSamePassword = computed(() => {
@@ -109,7 +128,8 @@ async function submit() {
     new URLSearchParams({
       accountId: loginId.value!,
       password: password.value!,
-      passwordConfirmation: passwordConfirmation.value!
+      passwordConfirmation: passwordConfirmation.value!,
+      accountName: accountName.value!,
     }),
     {
       headers: {

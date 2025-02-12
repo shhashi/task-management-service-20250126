@@ -7,7 +7,7 @@ import shhashi.practice.i20250126.infrastructure.tables.RegistrationCodes
 import java.time.OffsetDateTime
 
 @Single
-class RegistrationCodeRepository {
+class RegistrationCodesRepository {
     fun findActiveRegistrationCodeBy(registrationCode: String): List<RegistrationCode> {
         return loggedTransaction {
             RegistrationCodes

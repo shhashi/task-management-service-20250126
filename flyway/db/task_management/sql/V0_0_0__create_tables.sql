@@ -4,8 +4,8 @@ create table registration_codes
 (
     registration_code_id serial not null,
     registration_code    varchar(32),
-    create_account_ulid  varchar(26),
-    account_ulid         varchar(26),
+    create_account_id    integer,
+    account_id           integer,
     expired_in           timestamp with time zone,
     created_at           timestamp with time zone,
     constraint registration_codes_PKC primary key (registration_code_id)
@@ -16,7 +16,7 @@ create table registration_codes
 create table person_hours
 (
     person_hour_id bigserial not null,
-    account_ulid   varchar(26),
+    account_id     integer,
     task_id        varchar(100),
     person_hour    integer,
     working_day    timestamp with time zone,
@@ -39,15 +39,15 @@ create table status
 -- * RestoreFromTempTable
 create table tasks
 (
-    task_id      varchar(100) not null,
-    task_name    varchar(100),
-    description  text,
-    finish_date  timestamp with time zone,
-    account_ulid varchar(26),
-    project_id   varchar(100),
-    status_id    integer,
-    created_at   timestamp with time zone,
-    deleted_at   timestamp with time zone,
+    task_id     varchar(100) not null,
+    task_name   varchar(100),
+    description text,
+    finish_date timestamp with time zone,
+    account_id  serial,
+    project_id  varchar(100),
+    status_id   integer,
+    created_at  timestamp with time zone,
+    deleted_at  timestamp with time zone,
     constraint tasks_PKC primary key (task_id)
 );
 
@@ -68,7 +68,7 @@ create table roles
 create table account_roles
 (
     account_role_id serial       not null,
-    account_ulid    varchar(26)  not null,
+    account_id      integer      not null,
     project_id      varchar(100) not null,
     role_id         integer      not null,
     created_at      timestamp with time zone,
@@ -91,10 +91,10 @@ create table projects
 -- * RestoreFromTempTable
 create table accounts
 (
-    account_ulid varchar(26)  not null,
+    account_id   serial       not null,
     account_name varchar(20)  not null,
     password     varchar(100) not null,
     created_at   timestamp with time zone,
     deleted_at   timestamp with time zone,
-    constraint accounts_PKC primary key (account_ulid)
+    constraint accounts_PKC primary key (account_id)
 );

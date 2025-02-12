@@ -23,7 +23,7 @@ class RegistrationCodesRepository {
                     RegistrationCodes.expiredIn greaterEq OffsetDateTime.now()
                 }
                 .andWhere {
-                    RegistrationCodes.accountUlid.isNull()
+                    RegistrationCodes.accountId.isNull()
                 }.map { it[RegistrationCodes.registrationCode]
                     RegistrationCode(
                         registrationCodeId = it[RegistrationCodes.registrationCodeId],

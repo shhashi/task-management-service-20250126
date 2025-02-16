@@ -1,5 +1,6 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "2.1.0"
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.serialization") version "2.1.0"
     id("io.ktor.plugin") version "3.0.2"
     id("com.google.devtools.ksp") version "2.1.0-1.0.29"
 }
@@ -50,6 +51,8 @@ dependencies {
     implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 sourceSets.main {

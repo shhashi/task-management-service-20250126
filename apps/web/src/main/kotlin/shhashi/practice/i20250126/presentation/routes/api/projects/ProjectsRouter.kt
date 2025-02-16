@@ -6,6 +6,8 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.get
 import shhashi.practice.i20250126.core.projects.ProjectCreation
 
@@ -16,6 +18,7 @@ fun Application.projectsApiRoutes() {
         authenticate("auth-jwt") {
             put("/api/projects") {
                 val request = call.receive<ProjectCreationRequest>()
+                // TODO プロジェクト作成時にメンバーに作成者を追加する
                 val createdProjectIdToName = projectCreation.create(request.projectId, request.projectName)
                 call.respond(
                     HttpStatusCode.OK,
@@ -26,4 +29,8 @@ fun Application.projectsApiRoutes() {
     }
 }
 
-data class ProjectCreationRequest(val projectId: String, val projectName: String)
+@Serializable
+data class ProjectCreationRequest(
+    @SerialName("projectId") val projectId: String,
+    @SerialName("projectName") val projectName: String
+)

@@ -84,20 +84,11 @@ function closeModal() {
 async function submit() {
   isSubmitted.value = true;
 
-  const response = await axios.post(
-    url + "/api/projects",
-    {
-      accountId: projectId.value,
-      password: projectName.value,
-    },
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    },
-  );
+  const response = await axios.put(url + "/api/projects", {
+    projectId: projectId.value,
+    projectName: projectName.value,
+  });
 
-  // 認証成功時
   if (200 <= response.status && response.status < 300) {
     const eventValue: Project = {
       projectId: response.data.projectId,

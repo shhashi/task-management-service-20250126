@@ -10,7 +10,7 @@ fun Application.topWebRoutes() {
     routing {
         authenticate("auth-jwt") {
             get("/") {
-                call.respond(ThymeleafContent("built/top/index", emptyMap()))
+                call.respond(ThymeleafContent("built/top/service/index", emptyMap()))
             }
         }
     }

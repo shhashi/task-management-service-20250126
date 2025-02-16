@@ -1,6 +1,8 @@
 package shhashi.practice.i20250126
 
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
+import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.thymeleaf.*
 import org.koin.ksp.generated.module
 import org.koin.ktor.plugin.Koin
@@ -19,6 +21,10 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    install(ContentNegotiation) {
+        json()
+    }
+
     // Koin
     install(Koin) {
         modules(KoinAnnotationModule().module, jwtSetting(), passwordHashSetting())

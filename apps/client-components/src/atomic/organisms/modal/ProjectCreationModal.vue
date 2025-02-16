@@ -1,55 +1,57 @@
 <template>
-  <v-dialog v-model="open" max-width="400" persistent>
-    <p class="text-h3">プロジェクト作成</p>
+  <v-dialog v-model="open" max-width="600" persistent>
+    <v-card title="プロジェクト作成">
+      <v-card-item>
+        <v-row>
+          <v-col cols="4">
+            <div class="text-h5">プロジェクトID</div>
+          </v-col>
+          <v-col cols="8">
+            <v-text-field
+              v-model="projectId"
+              density="comfortable"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
 
-    <v-row>
-      <v-col cols="4">
-        <div class="text-h5">プロジェクトID</div>
-      </v-col>
-      <v-col cols="8">
-        <v-text-field
-          v-model="projectId"
-          density="comfortable"
-          variant="outlined"
-        />
-      </v-col>
-    </v-row>
+        <v-row>
+          <v-col cols="4">
+            <div class="text-h5">プロジェクト名</div>
+          </v-col>
+          <v-col cols="8">
+            <v-text-field
+              v-model="projectName"
+              density="comfortable"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
 
-    <v-row>
-      <v-col cols="4">
-        <div class="text-h5">プロジェクト名</div>
-      </v-col>
-      <v-col cols="8">
-        <v-text-field
-          v-model="projectName"
-          density="comfortable"
-          variant="outlined"
-        />
-      </v-col>
-    </v-row>
+        <v-row>
+          <v-btn
+            type="submit"
+            color="white"
+            block
+            class="mt-4"
+            @click="closeModal"
+          >
+            キャンセル
+          </v-btn>
 
-    <v-row>
-      <v-btn
-        type="submit"
-        color="primary"
-        block
-        class="mt-4"
-        @click="closeModal"
-      >
-        キャンセル
-      </v-btn>
-
-      <v-btn
-        type="submit"
-        color="primary"
-        block
-        class="mt-4"
-        @click="submit"
-        :disabled="!isInput || isSubmitted"
-      >
-        作成
-      </v-btn>
-    </v-row>
+          <v-btn
+            type="submit"
+            color="primary"
+            block
+            class="mt-4"
+            @click="submit"
+            :disabled="!isInput || isSubmitted"
+          >
+            作成
+          </v-btn>
+        </v-row>
+      </v-card-item>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -71,7 +73,7 @@ const projectName = ref<string>();
 const isSubmitted = ref<boolean>(false);
 
 const isInput = computed(() => {
-  return projectId.value !== "" && projectName.value !== "";
+  return !!projectId.value && !!projectName.value;
 });
 
 function closeModal() {

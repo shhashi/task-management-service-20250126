@@ -26,16 +26,17 @@
           variant="outlined"
         />
       </v-col>
-      <v-btn
-        type="submit"
-        color="primary"
-        block
-        class="mt-4"
-        :disabled="!isInput || isSubmitted"
-      >
-        ログイン
-      </v-btn>
     </v-row>
+
+    <v-btn
+      type="submit"
+      color="primary"
+      block
+      class="mt-4"
+      :disabled="!isInput || isSubmitted"
+    >
+      ログイン
+    </v-btn>
   </form>
 </template>
 

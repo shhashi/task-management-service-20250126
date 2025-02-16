@@ -9,11 +9,12 @@ class ProjectCreation(
     private val projectsRepository: ProjectsRepository
 ) {
 
-    fun create(projectId: String, projectName: String): String {
+    fun create(projectId: String, projectName: String): Pair<String?, String?> {
         val project = Project(
             projectId = projectId,
             projectName = projectName,
         )
-        return projectsRepository.create(project)
+        val insertedProject = projectsRepository.create(project)
+        return insertedProject.projectId to insertedProject.projectName
     }
 }

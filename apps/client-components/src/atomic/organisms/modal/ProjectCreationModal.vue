@@ -58,11 +58,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import axios from "axios";
+import type { Project } from "@/lib/view/ViewType";
 
 const url: string = import.meta.env.VITE_SERVICE_URL;
 
 type Emits = {
-  (event: "createdProject", value: string): void;
+  (event: "createdProject", value: Project): void;
 };
 const emits = defineEmits<Emits>();
 
@@ -98,8 +99,11 @@ async function submit() {
 
   // 認証成功時
   if (200 <= response.status && response.status < 300) {
-    const projectId = response.data.projectId;
-    emits("createdProject", projectId);
+    const eventValue: Project = {
+      projectId: response.data.projectId,
+      projectName: response.data.projectName,
+    };
+    emits("createdProject", eventValue);
   }
 
   if (400 <= response.status && response.status < 600) {

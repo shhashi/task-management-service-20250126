@@ -16,8 +16,11 @@ fun Application.projectsApiRoutes() {
         authenticate("auth-jwt") {
             put("/api/projects") {
                 val request = call.receive<ProjectCreationRequest>()
-                val createdProjectId = projectCreation.create(request.projectId, request.projectName)
-                call.respond(HttpStatusCode.OK, mapOf("projectId" to createdProjectId))
+                val createdProjectIdToName = projectCreation.create(request.projectId, request.projectName)
+                call.respond(
+                    HttpStatusCode.OK,
+                    mapOf("projectId" to createdProjectIdToName.first, "projectName" to createdProjectIdToName.second)
+                )
             }
         }
     }

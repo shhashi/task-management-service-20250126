@@ -6,5 +6,5 @@
 
 <script setup lang="ts">
 import AccountAuthentication from "@/atomic/templates/AccountAuthentication.vue";
-import LoginForm from "@/atomic/organisms/LoginForm.vue";
+import LoginForm from "@/atomic/organisms/form/LoginForm.vue";
 </script>

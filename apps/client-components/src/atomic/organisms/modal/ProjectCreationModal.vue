@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="open" max-width="600" persistent>
+  <v-dialog v-model="open" max-width="600">
     <v-card title="プロジェクト作成">
       <v-card-item>
         <v-row>
@@ -28,28 +28,26 @@
           </v-col>
         </v-row>
 
-        <v-row>
-          <v-btn
-            type="submit"
-            color="white"
-            block
-            class="mt-4"
-            @click="closeModal"
-          >
-            キャンセル
-          </v-btn>
+        <v-btn
+          type="submit"
+          color="white"
+          block
+          class="mt-4"
+          @click="closeModal"
+        >
+          キャンセル
+        </v-btn>
 
-          <v-btn
-            type="submit"
-            color="primary"
-            block
-            class="mt-4"
-            @click="submit"
-            :disabled="!isInput || isSubmitted"
-          >
-            作成
-          </v-btn>
-        </v-row>
+        <v-btn
+          type="submit"
+          color="primary"
+          block
+          class="mt-4"
+          @click="submit"
+          :disabled="!isInput || isSubmitted"
+        >
+          作成
+        </v-btn>
       </v-card-item>
     </v-card>
   </v-dialog>

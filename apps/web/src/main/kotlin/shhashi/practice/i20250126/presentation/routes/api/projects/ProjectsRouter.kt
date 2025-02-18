@@ -3,6 +3,7 @@ package shhashi.practice.i20250126.presentation.routes.api.projects
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -18,8 +19,13 @@ fun Application.projectsApiRoutes() {
         authenticate("auth-jwt") {
             put("/api/projects") {
                 val request = call.receive<ProjectCreationRequest>()
-                // TODO プロジェクト作成時にメンバーに作成者を追加する
-                val createdProjectIdToName = projectCreation.create(request.projectId, request.projectName)
+                val principal = call.principal<JWTPrincipal>()
+
+                val createdProjectIdToName = projectCreation.create(
+                    request.projectId,
+                    request.projectName,
+                    principal!!.payload.claims["accountId"]!!.asString().toInt() // TODO validation とエラーハンドリングを入れる。
+                )
                 call.respond(
                     HttpStatusCode.OK,
                     mapOf("projectId" to createdProjectIdToName.first, "projectName" to createdProjectIdToName.second)

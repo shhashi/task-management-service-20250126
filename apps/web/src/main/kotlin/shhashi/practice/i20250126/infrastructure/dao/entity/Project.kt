@@ -1,4 +1,4 @@
-package shhashi.practice.i20250126.infrastructure.entity
+package shhashi.practice.i20250126.infrastructure.dao.entity
 
 import java.time.OffsetDateTime
 

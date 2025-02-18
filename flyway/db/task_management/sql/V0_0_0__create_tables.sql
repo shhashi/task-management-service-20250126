@@ -70,7 +70,7 @@ create table account_roles
     account_role_id serial       not null,
     account_id      integer      not null,
     project_id      varchar(100) not null,
-    role_id         integer      not null,
+    role_id         varchar(100) not null,
     created_at      timestamp with time zone,
     deleted_at      timestamp with time zone,
     constraint account_roles_PKC primary key (account_role_id)

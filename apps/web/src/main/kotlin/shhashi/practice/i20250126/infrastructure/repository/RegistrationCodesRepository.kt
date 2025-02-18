@@ -1,15 +1,16 @@
-package shhashi.practice.i20250126.infrastructure
+package shhashi.practice.i20250126.infrastructure.repository
 
 import org.jetbrains.exposed.sql.andWhere
 import org.jetbrains.exposed.sql.update
 import org.koin.core.annotation.Single
-import shhashi.practice.i20250126.infrastructure.entity.RegistrationCode
-import shhashi.practice.i20250126.infrastructure.tables.RegistrationCodes
+import shhashi.practice.i20250126.infrastructure.dao.entity.RegistrationCode
+import shhashi.practice.i20250126.infrastructure.dao.tables.RegistrationCodes
+import shhashi.practice.i20250126.infrastructure.loggedTransaction
 import java.time.OffsetDateTime
 
 @Single
 class RegistrationCodesRepository {
-    fun findActiveRegistrationCodeBy(registrationCode: String): List<RegistrationCode> {
+    fun findActiveRegistrationCodeBy(registrationCode: String): List<RegistrationCode> { // TODO Daoにくくりだしたい
         return loggedTransaction {
             RegistrationCodes
                 .select(

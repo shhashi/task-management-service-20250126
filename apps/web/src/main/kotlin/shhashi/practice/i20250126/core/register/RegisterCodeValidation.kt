@@ -1,7 +1,7 @@
 package shhashi.practice.i20250126.core.register
 
 import org.koin.core.annotation.Single
-import shhashi.practice.i20250126.infrastructure.RegistrationCodesRepository
+import shhashi.practice.i20250126.infrastructure.repository.RegistrationCodesRepository
 
 @Single
 class RegisterCodeValidation(private val registrationCodesRepository: RegistrationCodesRepository) {

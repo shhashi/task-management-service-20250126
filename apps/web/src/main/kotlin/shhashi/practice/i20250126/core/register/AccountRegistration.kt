@@ -2,8 +2,8 @@ package shhashi.practice.i20250126.core.register
 
 import org.koin.core.annotation.Single
 import shhashi.practice.i20250126.config.settings.PasswordHashSettings
-import shhashi.practice.i20250126.infrastructure.AccountsRepository
-import shhashi.practice.i20250126.infrastructure.entity.Account
+import shhashi.practice.i20250126.infrastructure.dao.entity.Account
+import shhashi.practice.i20250126.infrastructure.repository.AccountsRepository
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 import kotlin.experimental.and

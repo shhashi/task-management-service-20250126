@@ -1,4 +1,4 @@
-package shhashi.practice.i20250126.infrastructure.tables
+package shhashi.practice.i20250126.infrastructure.dao.tables
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.kotlin.datetime.timestampWithTimeZone

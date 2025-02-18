@@ -11,9 +11,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.get
 import shhashi.practice.i20250126.core.projects.ProjectCreation
+import shhashi.practice.i20250126.core.projects.ProjectsRetrieval
 
 fun Application.projectsApiRoutes() {
     val projectCreation: ProjectCreation = get()
+    val projectsRetrieval: ProjectsRetrieval = get()
 
     routing {
         authenticate("auth-jwt") {
@@ -29,6 +31,20 @@ fun Application.projectsApiRoutes() {
                 call.respond(
                     HttpStatusCode.OK,
                     mapOf("projectId" to createdProjectIdToName.first, "projectName" to createdProjectIdToName.second)
+                )
+            }
+
+            get("/api/projects") {
+                val principal = call.principal<JWTPrincipal>()
+
+                val projectIdToNames = projectsRetrieval.findByAccountId(
+                    principal!!.payload.claims["accountId"]!!.asString().toInt() // TODO validation とエラーハンドリングを入れる。
+                )
+                call.respond(
+                    HttpStatusCode.OK,
+                    mapOf("projects" to projectIdToNames.map { projectIdToName ->
+                        mapOf("projectId" to projectIdToName.first, "projectName" to projectIdToName.second)
+                    })
                 )
             }
         }

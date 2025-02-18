@@ -23,4 +23,10 @@ class ProjectRepository {
             createdProject
         }
     }
+
+    fun fetchProjectsByAccountId(accountId: Int): List<Project> {
+        return loggedTransaction {
+            ProjectsDao.selectByAccountId(accountId)
+        }
+    }
 }

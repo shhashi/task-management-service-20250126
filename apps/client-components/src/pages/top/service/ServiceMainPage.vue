@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <ServiceMain :title="title" @change:view-type="changeViewType">
-      <Home v-if="viewType == ViewTypes.Home"></Home>
+      <Home
+        v-if="viewType == ViewTypes.Home"
+        @change:view-type="changeViewType"
+      ></Home>
       <TaskSearch v-if="viewType == ViewTypes.SearchTask"></TaskSearch>
       <MyPersonHour v-if="viewType == ViewTypes.MyPersonHour"></MyPersonHour>
     </ServiceMain>

@@ -1,15 +1,17 @@
 <template>
   <h3>ホーム画面</h3>
-  <v-card max-width="500" tile>
-    <v-list title="プロジェクト一覧">
-      <h4>プロジェクト一覧</h4>
+  <v-card max-width="500" outlined style="margin: 20px">
+    <v-card-subtitle class="text-h6">プロジェクト一覧</v-card-subtitle>
+    <v-list subheader>
       <v-list-item
         v-for="project in fetchedProjects?.projects"
         @click="moveToProject(project)"
+        outlined
       >
         <v-list-item-title>
           {{ project.projectName }}
         </v-list-item-title>
+        <v-divider></v-divider>
       </v-list-item>
     </v-list>
   </v-card>

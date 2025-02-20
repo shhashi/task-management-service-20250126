@@ -24,7 +24,7 @@ class ProjectRepository {
         }
     }
 
-    fun fetchProjectsByAccountId(accountId: Int): List<Project> {
+    fun findByAccountId(accountId: Int): List<Project> {
         return loggedTransaction {
             ProjectsDao.selectByAccountId(accountId)
         }

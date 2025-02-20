@@ -201,7 +201,7 @@ Field="タスクID","task_id","varchar(100)","NOT NULL",0,"","",$FFFFFFFF,""
 Field="タスク名","task_name","varchar(100)",,,"","",$FFFFFFFF,""
 Field="説明","description","text",,,"","",$FFFFFFFF,""
 Field="期日","finish_date","timestamp with time zone",,,"","",$FFFFFFFF,""
-Field="担当者ID","account_id","serial",,,"","",$FFFFFFFF,""
+Field="担当者ID","account_id","integer",,,"","",$FFFFFFFF,""
 Field="親プロジェクトID","project_id","varchar(100)",,,"","",$FFFFFFFF,""
 Field="ステータスID","status_id","integer",,,"","",$FFFFFFFF,""
 Field="作成日","created_at","timestamp with time zone",,,"","",$FFFFFFFF,""
@@ -209,7 +209,7 @@ Field="削除日","deleted_at","timestamp with time zone",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20250212225334
+ModifiedDateTime=20250220221552
 Position="MAIN",1700,1650,1169,491
 ZOrder=8
 
@@ -262,8 +262,8 @@ Comment=
 TableInnerOption=
 TableOption=
 Page=MAIN
-Left=4300
-Top=950
+Left=3150
+Top=850
 Field="ステータスID","status_id","serial","NOT NULL",0,"","",$FFFFFFFF,""
 Field="ステータス名","status_name","varchar(100)",,,"","",$FFFFFFFF,""
 Field="作成日","created_at","timestamp with time zone",,,"","",$FFFFFFFF,""
@@ -272,7 +272,7 @@ EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
 ModifiedDateTime=20250202145455
-Position="MAIN",4300,950,1020,613
+Position="MAIN",3150,850,1020,613
 ZOrder=11
 
 [Relation]

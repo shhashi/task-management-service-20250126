@@ -8,7 +8,7 @@ class ProjectsRetrieval(
     private val projectRepository: ProjectRepository
 ) {
     fun findByAccountId(accountId: Int): List<Pair<String, String>> {
-        val projects = projectRepository.fetchProjectsByAccountId(accountId)
+        val projects = projectRepository.findByAccountId(accountId)
         return projects.map {
             it.projectId!! to it.projectName!!
         }

@@ -37,7 +37,8 @@ function changeViewType(value: ViewType) {
       viewType.value = ViewTypes.MyPersonHour;
       break;
     case ViewTypes.Project:
-      title.value = value.project!!.projectId;
+      title.value =
+        value.project!!.projectId + " " + value.project!!.projectName;
       viewType.value = ViewTypes.Project;
       break;
   }

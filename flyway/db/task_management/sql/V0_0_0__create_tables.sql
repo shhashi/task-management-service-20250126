@@ -43,7 +43,7 @@ create table tasks
     task_name   varchar(100),
     description text,
     finish_date timestamp with time zone,
-    account_id  serial,
+    account_id  integer,
     project_id  varchar(100),
     status_id   integer,
     created_at  timestamp with time zone,

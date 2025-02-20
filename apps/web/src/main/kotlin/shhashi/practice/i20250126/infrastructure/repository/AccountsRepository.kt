@@ -3,7 +3,7 @@ package shhashi.practice.i20250126.infrastructure.repository
 import org.jetbrains.exposed.sql.andWhere
 import org.jetbrains.exposed.sql.insert
 import org.koin.core.annotation.Single
-import shhashi.practice.i20250126.infrastructure.dao.entity.Account
+import shhashi.practice.i20250126.infrastructure.repository.entity.Account
 import shhashi.practice.i20250126.infrastructure.dao.tables.Accounts
 import shhashi.practice.i20250126.infrastructure.loggedTransaction
 import java.time.OffsetDateTime

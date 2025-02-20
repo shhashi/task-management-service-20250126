@@ -1,7 +1,7 @@
 package shhashi.practice.i20250126.core.projects
 
 import org.koin.core.annotation.Single
-import shhashi.practice.i20250126.infrastructure.dao.entity.Project
+import shhashi.practice.i20250126.infrastructure.repository.entity.Project
 import shhashi.practice.i20250126.infrastructure.repository.ProjectRepository
 
 @Single

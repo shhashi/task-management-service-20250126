@@ -1,7 +1,7 @@
 package shhashi.practice.i20250126.infrastructure.dao
 
 import org.jetbrains.exposed.sql.insert
-import shhashi.practice.i20250126.infrastructure.dao.entity.AccountRole
+import shhashi.practice.i20250126.infrastructure.repository.entity.AccountRole
 import shhashi.practice.i20250126.infrastructure.dao.tables.AccountRoles
 import java.time.OffsetDateTime
 

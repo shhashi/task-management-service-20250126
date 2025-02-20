@@ -3,8 +3,8 @@ package shhashi.practice.i20250126.infrastructure.repository
 import org.koin.core.annotation.Single
 import shhashi.practice.i20250126.infrastructure.dao.ProjectsDao
 import shhashi.practice.i20250126.infrastructure.dao.RegistrationCodesDao
-import shhashi.practice.i20250126.infrastructure.dao.entity.AccountRole
-import shhashi.practice.i20250126.infrastructure.dao.entity.Project
+import shhashi.practice.i20250126.infrastructure.repository.entity.AccountRole
+import shhashi.practice.i20250126.infrastructure.repository.entity.Project
 import shhashi.practice.i20250126.infrastructure.loggedTransaction
 
 @Single

@@ -7,6 +7,12 @@
       ></Home>
       <TaskSearch v-if="viewType == ViewTypes.SearchTask"></TaskSearch>
       <MyPersonHour v-if="viewType == ViewTypes.MyPersonHour"></MyPersonHour>
+      <ProjectDetail
+        v-if="viewType == ViewTypes.Project"
+        :project-id="projectId"
+        @change:view-type="changeViewType"
+      ></ProjectDetail>
+      <TaskDetail v-if="viewType == ViewTypes.TaskDetail"></TaskDetail>
     </ServiceMain>
   </v-app>
 </template>
@@ -18,9 +24,12 @@ import { type ViewType, ViewTypes } from "@/lib/view/ViewType";
 import Home from "@/atomic/organisms/view/Home.vue";
 import MyPersonHour from "@/atomic/organisms/view/MyPersonHour.vue";
 import TaskSearch from "@/atomic/organisms/view/TaskSearch.vue";
+import TaskDetail from "@/atomic/organisms/view/TaskDetail.vue";
+import ProjectDetail from "@/atomic/organisms/view/ProjectDetail.vue";
 
 const viewType = ref<ViewTypes>(ViewTypes.Home);
 const title = ref<string>("ホーム");
+const projectId = ref<string>();
 
 function changeViewType(value: ViewType) {
   switch (value.viewType) {
@@ -38,8 +47,16 @@ function changeViewType(value: ViewType) {
       break;
     case ViewTypes.Project:
       title.value =
-        value.project!!.projectId + " " + value.project!!.projectName;
+        "プロジェクト: " +
+        value.project!!.projectId +
+        " " +
+        value.project!!.projectName;
       viewType.value = ViewTypes.Project;
+      projectId.value = value.project!!.projectId;
+      break;
+    case ViewTypes.TaskDetail:
+      title.value = "タスク: " + value.task!!.taskId;
+      viewType.value = ViewTypes.TaskDetail;
       break;
   }
 }

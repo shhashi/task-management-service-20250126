@@ -3,6 +3,7 @@ export enum ViewTypes {
   SearchTask,
   MyPersonHour,
   Project,
+  TaskDetail,
 }
 
 export type Project = {
@@ -10,7 +11,13 @@ export type Project = {
   projectName: string;
 };
 
+export type Task = {
+  taskId: string;
+  taskName: string;
+};
+
 export type ViewType = {
   viewType: ViewTypes;
   project?: Project;
+  task?: Task;
 };

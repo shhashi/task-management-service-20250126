@@ -1,11 +1,11 @@
 package shhashi.practice.i20250126.infrastructure.repository
 
 import org.koin.core.annotation.Single
+import shhashi.practice.i20250126.infrastructure.dao.AccountRolesDao
 import shhashi.practice.i20250126.infrastructure.dao.ProjectsDao
-import shhashi.practice.i20250126.infrastructure.dao.RegistrationCodesDao
+import shhashi.practice.i20250126.infrastructure.loggedTransaction
 import shhashi.practice.i20250126.infrastructure.repository.entity.AccountRole
 import shhashi.practice.i20250126.infrastructure.repository.entity.Project
-import shhashi.practice.i20250126.infrastructure.loggedTransaction
 
 @Single
 class ProjectRepository {
@@ -19,7 +19,9 @@ class ProjectRepository {
                 projectId = createdProject.projectId,
                 roleId = "ADMIN" // TODO ここ固定値でいいのか再検討
             )
-            RegistrationCodesDao.create(accountRole)
+            AccountRolesDao.create(accountRole)
+            // タスク管理用のシーケンスを追加
+            exec("CREATE SEQUENCE task_id_sequence_${createdProject.projectId} START WITH 1 INCREMENT BY 1")
             createdProject
         }
     }

@@ -9,7 +9,7 @@
       <MyPersonHour v-if="viewType == ViewTypes.MyPersonHour"></MyPersonHour>
       <ProjectDetail
         v-if="viewType == ViewTypes.Project"
-        :project-id="projectId"
+        :project-id="projectId!!"
         @change:view-type="changeViewType"
       ></ProjectDetail>
       <TaskDetail v-if="viewType == ViewTypes.TaskDetail"></TaskDetail>

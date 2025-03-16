@@ -13,15 +13,18 @@
       }
     "
   ></TaskCreationModal>
+
+  <ShowTable :project-id="projectId"></ShowTable>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { type ViewType, ViewTypes } from "@/lib/view/ViewType";
 import TaskCreationModal from "@/atomic/organisms/modal/TaskCreationModal.vue";
+import ShowTable from "@/atomic/molecuels/tasks/project/ShowTable.vue";
 
 type Props = {
-  projectId?: string;
+  projectId: string;
 };
 const { projectId } = defineProps<Props>();
 

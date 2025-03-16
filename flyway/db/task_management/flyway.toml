@@ -3,5 +3,10 @@ url = "jdbc:postgresql://localhost:5432/task_management"
 user = "flyway_user"
 password = "password"
 
+[environments."docker-local/task_management"]
+url = "jdbc:postgresql://db:5432/task_management"
+user = "flyway_user"
+password = "password"
+
 [flyway]
 locations = ["filesystem:./sql"]

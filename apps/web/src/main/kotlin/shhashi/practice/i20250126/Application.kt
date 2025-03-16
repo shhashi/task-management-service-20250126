@@ -57,8 +57,10 @@ fun Application.module() {
     // 起動時の処理 TODO どこかにくくりだしたい
     // - 最初のアカウントの登録コードを表示
     val registrationCodesRepository: RegistrationCodesRepository = get()
-    val firstRegistrationCode = registrationCodesRepository.findAll()[0].registrationCode
-    println("----------")
-    println("check code: $firstRegistrationCode")
-    println("----------")
+    val firstRegistrationCodes = registrationCodesRepository.findAll()
+    if (firstRegistrationCodes.isNotEmpty()) {
+        println("----------")
+        println("check code: ${firstRegistrationCodes[0].registrationCode}")
+        println("----------")
+    }
 }

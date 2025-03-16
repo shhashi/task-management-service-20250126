@@ -10,6 +10,29 @@ import java.time.OffsetDateTime
 
 @Single
 class RegistrationCodesRepository {
+    fun findAll(): List<RegistrationCode> {
+        return loggedTransaction {
+            RegistrationCodes
+                .select(
+                    RegistrationCodes.registrationCodeId,
+                    RegistrationCodes.registrationCode,
+                    RegistrationCodes.expiredIn
+                )
+                .where {
+                    RegistrationCodes.expiredIn greaterEq OffsetDateTime.now()
+                }
+                .andWhere {
+                    RegistrationCodes.accountId.isNull()
+                }.map {
+                    RegistrationCode(
+                        registrationCodeId = it[RegistrationCodes.registrationCodeId],
+                        registrationCode = it[RegistrationCodes.registrationCode],
+                        expiredIn = it[RegistrationCodes.expiredIn],
+                    )
+                }
+        }
+    }
+
     fun findActiveRegistrationCodeBy(registrationCode: String): List<RegistrationCode> { // TODO Daoにくくりだしたい
         return loggedTransaction {
             RegistrationCodes
